@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>Welcome!</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <h1>Welcome to Flask Tutorial! {{name}}</h1>
+        <form action="/post" method="post">
+            이름 입력 : <input type="text" name="user">
+            <input type="submit" onclick="location.href='/get'" value="POST">
+        </form>
+        <form action="/get" method="get">
+            이름 입력 : <input type="text" name="user">
+            <input type="submit" onclick="location.href='/post'" value="GET">
+        </form>
+        <!--
+        <button type="button" onclick="location.href='/get'">GET</button>
+        <button type="button" onclick="location.href='/post'">POST</button>
+        -->
+    </body>
+</html>
