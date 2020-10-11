@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='UTF-8'>
+        <title>Document</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
+    </head>
+    <body>
+        <h1>키워드 대결</h1>
+        <form action="\" method="get">
+            <!-- 
+                <label> 태그:사용자 인터페이스 요소의 라벨을 정의할 때 사용. 
+                <label> 태그 for 속성:다른 요소와 결합할 수 있음. <label> for 속성값은 결합하고자 하는 요소의 id 속성갑과 같아야 함. 
+                <label> 요소를 사용할 수 있는 요소:<button>, <input>, <meter>, <output>, <progress>, <select>, <textarea>
+            -->
+            <label for="keyword1">첫번째 키워드</label>
+            <input type="text" name="keyword1" id="keyword1">
+            <label for="keyword2">두번째 키워드</label>
+            <input type="text" name="keyword2" id="keyword2">
+            <button type="submit">검색</button>
+        </form>
+
+        {% if data %}
+            <div id="visual_result">
+                {% for k, v in data.items() %} <div class="bar bar{{loop.index}}" value="{{v}}">{{k}} {{v}}</div> {% endfor %}
+            </div>
+        {% endif %}
+
+        <script>
+            function draw_bar() {
+                var bars = document.querySelectorAll('.bar');
+                var total = 0;
+            
+                for (var i=0; i<bars.length; i++) {
+                    total += parseInt(bars[i].getAttribute('value'));
+                };
+                console.log("total=" + total);
+
+                //반복으로 div width 속성 설정.
+                for (var i=0; i<bars.length; i++) {
+                    w = bars[i].getAttribute('value');
+                    console.log(w);
+                    bars[i].style.width = parseInt(w)/total*100 + '%';
+                };
+            }
+            
+            //시간차 실행
+            setTimeout(draw_bar, 1000);
+        </script>
+    </body>
+</html>
