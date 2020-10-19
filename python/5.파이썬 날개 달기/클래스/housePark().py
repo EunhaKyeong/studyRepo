@@ -3,7 +3,7 @@ class HousePark():
 
     def __init__(self, name):
         self.fullname = self.lastname + name
-        
+
     def setname(self, name):
         self.fullname = self.lastname + name
         return self.fullname
@@ -25,7 +25,7 @@ pey.travel("부산")
 
 #상속:박씨네 집에서 김씨네 집으로
 class HouseKim(HousePark):
-    lastname = '김'
+    lastname = '이'
 
     #method overriding
     def travel(self, region, day):
