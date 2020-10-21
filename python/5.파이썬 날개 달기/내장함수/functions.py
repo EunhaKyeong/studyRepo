@@ -68,6 +68,46 @@ print(len([1, 2, 3]))   #출력결과:3
 print(len((1, 'a')))    #출력결과:2
 
 #list() : 반복 가능한 자료형을 입력 받아 리스트로 만들어 리턴하는 함수.
-print(type("python"))
-print(list("python"))
-print(type(list("python")))
+print(type("python"))   #출력결과:<class 'str'>
+print(list("python"))   #출력결과:['p', 'y', 't', 'h', 'o', 'n']
+print(type(list("python"))) #출력결과:<class 'list'>
+
+#max() : 최댓값을 리턴하는 함수
+print(max([1, 2, 3]))   #출력결과:3
+print(max("python"))    #출력결과:y
+
+#min() : 최솟값을 리턴하는 함수
+print(min([1, 2, 3]))   #출력결과:1
+print(min("python"))    #출력결과:'h'
+
+#oct() : 정수 형태 숫자를 8진수 문자열로 바꿔 리턴하는 함수.
+print(oct(34))  #출력결과:0o42
+print(oct(12345))   #출력결과:0o30071
+
+#ord() : 문자의 아스키 코드값을 리턴하는 함수.
+print(ord('a')) #출력결과:97
+print(ord('O')) #출력결과:48
+
+#pow(x, y) : x의 y제곱 결과를 리턴하는 함수.
+print(pow(2, 4))    #출력결과:16
+print(pow(3, 3))    #출력결과:27 
+
+#str() : 문자열 형태로 변환하여 리턴하는 함수.
+print(str(3))   #출력결과:'3'
+print(str('hi'))    #출력결과:'hi'
+print(str('hi'.upper()))    #출력결과:'HI'
+
+#tuple() : 반복 가능한 자료형을 입력받아 튜플 형태로 변환 후 리턴하는 함수.
+print(tuple("abc")) #출력결과:('a', 'b', 'c')
+print(tuple([1, 2, 3])) #출력결과:(1, 2, 3)
+print(tuple((1, 2, 3))) #출력결과:(1, 2, 3)
+
+#type() : 입력값의 자료형이 무엇인지 알려주는 함수.
+print(type("abc"))  #출력결과:<class 'str'>
+print(type([])) #출력결과:<class 'list'>
+print(type(open("test", 'w')))  #출력결과:<class '_io.TextIOWrapper'> -> 파일 자료형
+
+#zip() : 동일한 개술 이루어진 자료형을 묶어 주는 역할.
+print(list(zip([1, 2, 3], [4, 5, 6])))  #출력결과:[(1, 4), (2, 5), (3, 6)]
+print(list(zip([1, 2, 3], [4, 5, 6], [7, 8, 9])))   #출력결과:[(1, 4, 7), (2, 5, 8), (3, 6, 9)]
+print(list(zip("abc", "def")))  #출력결과:[('a', 'd'), ('b', 'e'), ('c', 'f')]
