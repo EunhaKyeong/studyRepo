@@ -1,0 +1,2 @@
+notePad함수 w모드 테스트
+notePad함수 a모드 테스트
