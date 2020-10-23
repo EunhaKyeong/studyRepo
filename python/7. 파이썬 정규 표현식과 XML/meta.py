@@ -36,3 +36,23 @@ m = p.search("park 010-1234-1234")
 print(m.group(0))   #매치된 전체 문자열
 print(m.group(1))   #첫번째 그룹에 해당되는 문자열 -> park
 print(m.group(2))   #두번째 그룹에 해당되는 문자열 -> 010-1234-1234
+
+#그룹핑된 문자열 재참조하기
+p = re.compile(r"(\w+)\s+\1")   #\1 : 재참조 메타 문자. \1은 첫번째 그룹을 지칭함. 만약에 두번째 그룹이면 \2를 사용하면 됨.
+result = p.search("Paris in the the rain").group()
+print(result)
+p = re.compile(r"(\w+)\s+(\d)+\s+\2")
+result = p.search("Paris in the the rain for 3 3 days").group()
+print(result)
+
+#그룹핑된 문자열에 이름 붙이기 : 확장 구문을 사용하면 그룹에 이름을 지어 줄 수 있음.
+#확장 구문 : (?P<그룹명>그룹 정규 표현식)
+p = re.compile(r"(?P<name>\w+)\s((\d+)[-]\d+[-]\d+)")   #확장 구문을 사용하여 \w+라는 그룹에 name이란 그룹명을 붙여줌.
+m = p.search("park 010-1234-1234")
+print(m.group())    #해당 전체 결과 출력
+print(m.group("name"))  #정규표현식에 매칭된 결과 중 그룹명이 name인 결과 출력
+#그룹명을 이용하여 재참조하기
+p = re.compile(r"(?P<word>\w+)\s+(?P=word)")
+m = p.search("Paris in the the spring")
+print(m.group())
+print(m.group("word"))
