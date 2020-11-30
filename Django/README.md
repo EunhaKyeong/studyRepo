@@ -71,4 +71,5 @@ manage.py makemigrations (app-name)
 <br><br>
 
 # 🔍참조
-[유튜브_OneQ](https://youtu.be/Fn2XMeRmwe4)
+[유튜브_OneQ](https://youtu.be/Fn2XMeRmwe4)  
+[유튜브_onLifeCoding](https://youtu.be/jS4fLseF_cs)
