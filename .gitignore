@@ -1,0 +1,12 @@
+#Spring
+target/
+.settings/
+
+#Compiled class file
+*.class
+
+#Log file
+*.log
+
+#BlueJ files
+*.ctxt
