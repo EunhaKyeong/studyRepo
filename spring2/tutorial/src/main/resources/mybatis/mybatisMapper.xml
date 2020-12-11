@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="mybatis.mybatisConfig">
+	
+	
+</mapper> -->
+
+<mapper namespace="membersDB">
+	<!-- SELECT
+		1. SELECT문을 사용할 때는 select 태그 사용.
+		2. id : 호출할 쿼리문 명칭
+		3. parameterType : 쿼리문에서 동적으로 변수를 받을 때 그 변수의 자료형 타입
+		4. resultType : 조회할 테이블(config에서 정한 alias 명칭)
+		-->
+	<select id="selectMember" parameterType="string" resultType="MembersVO">
+		select * from members where email=#{email}	<!-- {#email}:동적으로 받는 변수(parameterType에 적힌 자료형으로 입력) -->
+	</select>
+		
+	<select id="selectAllMembers" parameterType="string" resultType="MembersVO">
+		select * from members;
+	</select>
+	
+	<insert id="insertMember" parameterType="string">
+		insert into members(email) values(#{email})
+	</insert>
+</mapper>
