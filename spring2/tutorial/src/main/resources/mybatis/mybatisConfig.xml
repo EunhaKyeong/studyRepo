@@ -5,7 +5,8 @@
 <configuration> 
 	<!-- VO(=DTO) 객체 등록 -->
 	<typeAliases>
-		<typeAlias alias="MembersVO" type="com.tutorial.spring.dto.MembersVO"></typeAlias>	
+		<typeAlias alias="MembersVO" type="com.tutorial.spring.dto.MembersVO"></typeAlias>
+		<typeAlias alias="ProductVO" type="com.tutorial.spring.dto.ProductVO"></typeAlias>	
+		<typeAlias alias="CategoryVO" type="com.tutorial.spring.dto.CategoryVO"></typeAlias>
 	</typeAliases>
-
 </configuration>

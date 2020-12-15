@@ -17,13 +17,13 @@ public class MembersDAO {
 	
 	// 1개만 select
 	public MembersVO select(String email) {
-		MembersVO member = session.selectOne("membersDB.selectMember", email);
+		MembersVO member = session.selectOne("testDB.selectMember", email);
 		return member;
 	}
 		
 	// 여러 개 select
 	public List<MembersVO> selectAll() {
-		List<MembersVO> memberList = session.selectList("membersDB.selectAllMembers");
+		List<MembersVO> memberList = session.selectList("testDB.selectAllMembers");
 		return memberList;		
 	}
 	
@@ -31,6 +31,6 @@ public class MembersDAO {
 	public void insert(String email) {
 		MembersVO member = new MembersVO();
 		member.setEmail(email);
-		session.insert("membersDB.insertMember", email);
+		session.insert("testDB.insertMember", email);
 	}
 }

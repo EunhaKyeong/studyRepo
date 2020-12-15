@@ -12,12 +12,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tutorial.spring.dao.CategoryDAO;
 import com.tutorial.spring.dao.MembersDAO;
+import com.tutorial.spring.dao.ProductDAO;
+import com.tutorial.spring.dto.CategoryVO;
 import com.tutorial.spring.dto.MembersVO;
+import com.tutorial.spring.dto.ProductVO;
 
 @Controller
 public class HomeController {
@@ -29,64 +34,98 @@ public class HomeController {
 	private SqlSessionFactory sqlFactory;
 	@Resource
 	private MembersDAO member;
+	@Resource
+	private ProductDAO product;
+	@Resource
+	private CategoryDAO category;
 	
 	@RequestMapping(value = "/")
-	public String home1() {
-		return "test";
+	public String index(Model model) {
+		List<ProductVO> pList = product.selectLimit(0);
+		model.addAttribute("pList", pList);
+		
+		List<CategoryVO> categoryList = category.selectAll();
+		model.addAttribute("categoryList", categoryList);
+
+		return "index";
 	}
 	
-	// /list1 URI에 대한 요청 처리 - dataSource
-	@RequestMapping(value = "/list1")
-	public String home2() {
+	@RequestMapping(value="/products/{productPage}")
+	public String products(@PathVariable("productPage") int productPage, Model model) {
+		int startIdx = 6*(productPage-1);
+		List<ProductVO> pList = product.selectLimit(startIdx);
+		model.addAttribute("pList", pList);
 		
-		try {
-			Connection conn = (Connection) dataSource.getConnection();
-		System.out.println("성공 : " + conn);
+		List<CategoryVO> categoryList = category.selectAll();
+		model.addAttribute("categoryList", categoryList);
 		
-		} catch (Exception ex){
-			System.out.println("실패..!");
-			ex.printStackTrace();
-		}
-		
-		return "list1";
+		return "index";
 	}
+	
+	@RequestMapping(value="/category/{categoryId}")
+	public String category(@PathVariable("categoryId") int categoryId, Model model) {
+		List<ProductVO> productList = product.selectCategory(categoryId);
+		model.addAttribute("productList", productList);
+		System.out.println(productList);
+		
+		List<CategoryVO> categoryList = category.selectAll();
+		model.addAttribute("categoryList", categoryList);
+		
+		
+		return "products";
+	}
+	// /list1 URI에 대한 요청 처리 - dataSource
+//	@RequestMapping(value = "/list1")
+//	public String home2() {
+//		
+//		try {
+//			Connection conn = (Connection) dataSource.getConnection();
+//		System.out.println("성공 : " + conn);
+//		
+//		} catch (Exception ex){
+//			System.out.println("실패..!");
+//			ex.printStackTrace();
+//		}
+//		
+//		return "list1";
+//	}
 	
 	// "/list1 URI에 대한 요청 처리 - Session
-	@RequestMapping(value = "/list2")
-	public String home3() {
-		
-		try {
-			SqlSession session = sqlFactory.openSession();
-			System.out.println("성공 : " + session);
-				
-		} catch (Exception ex){
-			System.out.println("실패..!");
-			ex.printStackTrace();
-		}
-		
-		return "list2";
-	}
+//	@RequestMapping(value = "/list2")
+//	public String home3() {
+//		
+//		try {
+//			SqlSession session = sqlFactory.openSession();
+//			System.out.println("성공 : " + session);
+//				
+//		} catch (Exception ex){
+//			System.out.println("실패..!");
+//			ex.printStackTrace();
+//		}
+//		
+//		return "list2";
+//	}
 	
-	@RequestMapping(value="/members", method= {RequestMethod.GET, RequestMethod.POST})
-	public String members(Model model, HttpServletRequest request, @RequestParam(defaultValue="") String email) {
-		if (request.getMethod().equals("POST")) {
-			member.insert(email);
-		}
-		List<MembersVO> m = member.selectAll();
-		String emails = "";
-		
-		for (int i=0; i<m.size(); i++) {
-			emails += m.get(i).getEmail() + "<br>";
-		}
-		model.addAttribute("email", emails);
-		
-		return "members";
-	}
-	
-	@RequestMapping(value="/member")
-	public String member() {
-		return "member";
-	}
+//	@RequestMapping(value="/members", method= {RequestMethod.GET, RequestMethod.POST})
+//	public String members(Model model, HttpServletRequest request, @RequestParam(defaultValue="") String email) {
+//		if (request.getMethod().equals("POST")) {
+//			member.insert(email);
+//		}
+//		List<MembersVO> m = member.selectAll();
+//		String emails = "";
+//		
+//		for (int i=0; i<m.size(); i++) {
+//			emails += m.get(i).getEmail() + "<br>";
+//		}
+//		model.addAttribute("email", emails);
+//		
+//		return "members";
+//	}
+//	
+//	@RequestMapping(value="/member")
+//	public String member() {
+//		return "member";
+//	}
 	
 	
 }
