@@ -3,6 +3,7 @@ target/
 .settings/
 */.metadata/
 */Servers/
+*/tutorial/src/main/resources/config/
 
 #Compiled class file
 *.class
