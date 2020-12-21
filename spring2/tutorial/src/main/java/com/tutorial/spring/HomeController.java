@@ -1,13 +1,19 @@
 package com.tutorial.spring;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Controller;
@@ -16,11 +22,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.tutorial.spring.dao.CategoryDAO;
+import com.tutorial.spring.dao.ImageDAO;
 import com.tutorial.spring.dao.MembersDAO;
 import com.tutorial.spring.dao.ProductDAO;
 import com.tutorial.spring.dto.CategoryVO;
+import com.tutorial.spring.dto.ImageVO;
 import com.tutorial.spring.dto.MembersVO;
 import com.tutorial.spring.dto.ProductVO;
 
@@ -38,6 +47,8 @@ public class HomeController {
 	private ProductDAO product;
 	@Resource
 	private CategoryDAO category;
+	@Resource
+	private ImageDAO imageDAO;
 	
 	@RequestMapping(value = "/")
 	public String index(Model model) {
@@ -73,6 +84,23 @@ public class HomeController {
 		
 		
 		return "products";
+	}
+	
+	@RequestMapping(value="/test", method=RequestMethod.GET)
+	public String testGet() {
+		return "test";
+	}
+	
+	@RequestMapping(value="/test", method=RequestMethod.POST)
+	public String testPost(@RequestParam("imgFile") MultipartFile image, ImageVO imageVO) throws IllegalStateException, IOException {
+		String originName = image.getOriginalFilename();	//원본파일이름
+		String ext = FilenameUtils.getExtension(originName);	//확장자
+		UUID uuid = UUID.randomUUID();
+		String fileName = uuid+"."+ext;
+		image.transferTo(new File("C:\\study\\spring2\\tutorial\\src\\main\\resources\\upload_images\\" + fileName));
+		
+		imageDAO.insertImage(imageDAO.selectMaxImageId()+1, fileName);
+		return "test";
 	}
 	// /list1 URI에 대한 요청 처리 - dataSource
 //	@RequestMapping(value = "/list1")
