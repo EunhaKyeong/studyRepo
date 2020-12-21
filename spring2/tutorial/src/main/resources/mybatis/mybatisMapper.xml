@@ -43,4 +43,13 @@
 		on p.category_id=c.category_id
 		where p.category_id=#{ categoryId };
 	</select>
+	
+	<insert id="insertImage" parameterType="ImageVO">
+		insert into image(image_id, image_name, image_url) values (#{imageId}, #{imageName}, #{imageUrl});
+	</insert>
+	
+	<select id="selectMaxImageId" resultType="int">
+		select MAX(image_id)
+		from image;
+	</select>
 </mapper>
