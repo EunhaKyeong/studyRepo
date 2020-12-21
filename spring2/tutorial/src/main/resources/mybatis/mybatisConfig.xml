@@ -8,5 +8,6 @@
 		<typeAlias alias="MembersVO" type="com.tutorial.spring.dto.MembersVO"></typeAlias>
 		<typeAlias alias="ProductVO" type="com.tutorial.spring.dto.ProductVO"></typeAlias>	
 		<typeAlias alias="CategoryVO" type="com.tutorial.spring.dto.CategoryVO"></typeAlias>
+		<typeAlias alias="ImageVO" type="com.tutorial.spring.dto.ImageVO"></typeAlias>
 	</typeAliases>
 </configuration>
