@@ -4,6 +4,7 @@ target/
 */.metadata/
 */Servers/
 */tutorial/src/main/resources/config/
+spring2/tutorial/src/main/resources/upload_images/
 
 #Compiled class file
 *.class
