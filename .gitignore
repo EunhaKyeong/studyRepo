@@ -5,7 +5,8 @@ target/
 */Servers/
 */tutorial/src/main/resources/config/
 spring2/tutorial/src/main/resources/upload_images/
-
+JSP_Ajax/.metadata/
+JSP_Ajax/Servers/
 #Compiled class file
 *.class
 
