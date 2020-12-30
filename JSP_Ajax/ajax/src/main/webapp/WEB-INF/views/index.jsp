@@ -7,6 +7,7 @@
 <title>JSP AJAX</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
 	<br>
@@ -37,7 +38,6 @@
 					<td>${user.userEmail}</td>
 				</tr>
 				</c:forEach>
-				<tr id="ajaxTr">
 				</tr>
 			</tbody>
 		</table>	
@@ -84,7 +84,9 @@
 		</table>
 	</div>
 	
-	<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script>
+		
+	</script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
 </body>
