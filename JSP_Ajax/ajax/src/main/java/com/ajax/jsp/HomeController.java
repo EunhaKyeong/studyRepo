@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ajax.jsp.dao.Jamong;
 import com.ajax.jsp.dao.UserDAO;
 import com.ajax.jsp.dto.UserDTO;
 
@@ -43,18 +41,4 @@ public class HomeController {
 	        
 	    return userHm;
 	}
-	
-	@RequestMapping(value="/stringify", method=RequestMethod.GET)
-    public String stringifyGet() {
-		return "jamong";
-    }
-	
-	@RequestMapping(value="/stringify", method=RequestMethod.POST)
-    @ResponseBody
-    public Object stringify(@RequestBody Jamong jamong) {
-        HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("name", jamong.getName());
-        map.put("age", jamong.getAge());
-        return map;
-    }
 }
