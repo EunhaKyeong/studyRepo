@@ -19,9 +19,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tutorial.spring.dao.CategoryDAO;
@@ -75,15 +77,28 @@ public class HomeController {
 	
 	@RequestMapping(value="/category/{categoryId}")
 	public String category(@PathVariable("categoryId") int categoryId, Model model) {
-		List<ProductVO> productList = product.selectCategory(categoryId);
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		hm.put("categoryId", categoryId);
+		hm.put("page", 0);
+		List<ProductVO> productList = product.selectCategory(hm);
 		model.addAttribute("productList", productList);
-		System.out.println(productList);
 		
 		List<CategoryVO> categoryList = category.selectAll();
 		model.addAttribute("categoryList", categoryList);
 		
 		
 		return "products";
+	}
+	
+	@RequestMapping(value="/category/paging", method=RequestMethod.POST)
+	@ResponseBody
+	public List<ProductVO> paging(@RequestBody HashMap<String, Object> dataTransfer) {
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		hm.put("categoryId", dataTransfer.get("categoryId"));
+		hm.put("page", dataTransfer.get("page"));
+		List<ProductVO> productList = product.selectCategory(hm);
+		
+		return productList;
 	}
 	
 	@RequestMapping(value="/test", method=RequestMethod.GET)
