@@ -13,6 +13,7 @@
 
 	<!-- Bootstrap core CSS -->
 	<link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/spacelab/bootstrap.min.css"/>
 	
 	<!-- Custom styles for this template -->
 	<link href="${pageContext.request.contextPath}/resources/css/shop-homepage.css" rel="stylesheet"/> 
@@ -64,7 +65,7 @@
       <!-- /.col-lg-3 -->
 
       <div class="col-lg-9">
-        <div class="row">
+        <div class="row" id="productsRow">
           <c:set var="products" value="${ productList }"/>
 		  <c:choose>
 		  	<%-- 카레고리가 비어있을 경우 --%>
@@ -98,9 +99,21 @@
       <!-- /.col-lg-9 -->
     </div>
     <!-- /.row -->
+    
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+	  <div class="btn-group me-2" role="group" aria-label="First group">
+	    <button type="button" class="btn btn-primary">1</button>
+	    <button type="button" class="btn btn-primary">2</button>
+	    <button type="button" class="btn btn-primary">3</button>
+	    <button type="button" class="btn btn-primary">4</button>
+	    <button type="button" class="btn btn-primary">4</button>
+	  </div>
+	</div>
   </div>
   <!-- /.container -->
-
+  
+  
+  
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
@@ -112,5 +125,6 @@
 	<!-- Bootstrap core JavaScript -->
   	<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/products.js"></script>
 </body>
 </html>
