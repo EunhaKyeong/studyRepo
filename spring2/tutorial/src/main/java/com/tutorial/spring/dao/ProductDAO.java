@@ -1,5 +1,6 @@
 package com.tutorial.spring.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -27,8 +28,8 @@ public class ProductDAO {
 		return productlist;
 	}
 	
-	public List<ProductVO> selectCategory(int categoryId) {
-		List<ProductVO> productlist = session.selectList("testDB.selectProductsCategory", categoryId);
+	public List<ProductVO> selectCategory(HashMap<String, Object> hm) {
+		List<ProductVO> productlist = session.selectList("testDB.selectProductsCategory", hm);
 		
 		return productlist;
 	}
