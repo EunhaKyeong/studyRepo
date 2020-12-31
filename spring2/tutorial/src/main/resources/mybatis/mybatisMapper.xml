@@ -37,11 +37,12 @@
 		select * from category;
 	</select>
 	
-	<select id="selectProductsCategory" parameterType="int" resultType="ProductVO">
+	<select id="selectProductsCategory" parameterType="HashMap" resultType="ProductVO">
 		select p.product_name, p.manufacturer, p.seller, p.product_price, p.product_img
 		from product as p Left join category as c
 		on p.category_id=c.category_id
-		where p.category_id=#{ categoryId };
+		where p.category_id=#{ categoryId }
+		limit #{page}, 6;
 	</select>
 	
 	<insert id="insertImage" parameterType="ImageVO">
