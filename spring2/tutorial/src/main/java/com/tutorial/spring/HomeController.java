@@ -84,8 +84,10 @@ public class HomeController {
 		model.addAttribute("productList", productList);
 		
 		List<CategoryVO> categoryList = category.selectAll();
+		int totalPageNo = product.selectRowCnt(categoryId)/6+1;
+
 		model.addAttribute("categoryList", categoryList);
-		
+		model.addAttribute("totalPageNo", totalPageNo);
 		
 		return "products";
 	}
