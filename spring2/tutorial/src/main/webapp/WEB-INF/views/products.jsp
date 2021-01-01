@@ -101,12 +101,18 @@
     <!-- /.row -->
     
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-	  <div class="btn-group me-2" role="group" aria-label="First group">
-	    <button type="button" class="btn btn-primary">1</button>
-	    <button type="button" class="btn btn-primary">2</button>
-	    <button type="button" class="btn btn-primary">3</button>
-	    <button type="button" class="btn btn-primary">4</button>
-	    <button type="button" class="btn btn-primary">4</button>
+	  <div class="btn-group me-2" role="group" aria-label="First group" id="pageButtonGroup">
+	  	<c:if test="${ startPageNo-5 > 1 }">
+	  		<button type="button" class="btn btn-primary">이전</button>
+	  	</c:if>
+	  	<c:set var="start" value="1"></c:set>
+	  	<c:set var="total" value="${ totalPageNo }"></c:set>
+	  	<c:forEach var="pageNo" begin="${ start }" end="${ start+4 }">
+	  		<button type="button" class="btn btn-primary pageNum">${ pageNo }</button>
+	  	</c:forEach>
+	  	<c:if test="${ start+5 <= total }">
+	  		<button type="button" class="btn btn-primary" id="nextPage">다음</button>
+	  	</c:if>
 	  </div>
 	</div>
   </div>
@@ -126,5 +132,8 @@
   	<script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/products.js"></script>
+	<script>
+		var totalPageNo = ${ total };
+	</script>
 </body>
 </html>
