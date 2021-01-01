@@ -33,4 +33,10 @@ public class ProductDAO {
 		
 		return productlist;
 	}
+	
+	public int selectRowCnt(int category_id) {
+		int rowCnt = session.selectOne("testDB.selectRowCnt", category_id);
+		
+		return rowCnt;
+	}
 }

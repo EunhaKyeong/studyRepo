@@ -33,6 +33,10 @@
 		select * from product limit #{startIdx}, 6;
 	</select>
 	
+	<select id="selectRowCnt" parameterType="int" resultType="int">
+		select count(*) from product where category_id=#{ category_id };
+	</select>
+	
 	<select id="selectAllCategories" resultType="CategoryVO">
 		select * from category;
 	</select>
