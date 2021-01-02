@@ -1,4 +1,4 @@
-$(".pageNum").click(function() {
+$(document).on('click', '.pageNum', function() {
 	var page = 6*(Number($(this).text())-1);
 	var categoryId = Number($(location).attr('pathname').slice(-1));
 	var dataTransfer = {"page":page,
@@ -20,11 +20,11 @@ $(".pageNum").click(function() {
 	});
 });
 
-$("#nextPage").click(function() {
+$(document).on('click', '#nextPage', function() {
 	var startPageNo = Number($(".pageNum")[0].textContent);
 	var lastPageNo = Number($(".pageNum")[4].textContent);
 	
-	var dataTransfer = {"page":Number(lastPageNo),
+	var dataTransfer = {"page":6*Number(lastPageNo),
 						"categoryId":Number($(location).attr('pathname').slice(-1))};
 						
 	$.ajax({
@@ -42,14 +42,46 @@ $("#nextPage").click(function() {
 			}
 			
 			var buttonHtml = "";
-			buttonHtml += "<button type=\"button\" class=\"btn btn-primary\">이전</button>";
+			buttonHtml += "<button type=\"button\" class=\"btn btn-primary\" id=\"prevPage\">이전</button>";
 			for (var pageNo=startPageNo+5; pageNo<=lastPageNo; pageNo++) {
 				buttonHtml += "<button type=\"button\" class=\"btn btn-primary pageNum\">" + pageNo + "</button>";
+			}
+			if (lastPageNo+5 <= totalPageNo) {
+				buttonHtml += "<button type=\"button\" class=\"btn btn-primary\" id=\"nextPage\">다음</button>";
 			}
 			$("#pageButtonGroup").html(buttonHtml);
 			
 			paging(data);
 			
+		},
+		error:function() {
+			alert("ERROR!!");
+		}
+	});
+});
+
+$(document).on('click', '#prevPage', function() {
+	var firstPageNo = Number($(".pageNum")[0].textContent);	//6
+	var dataTransfer = {"page":6*(firstPageNo-2),
+						"categoryId":Number($(location).attr('pathname').slice(-1))};
+	$.ajax({
+		url:"/category/paging", 
+		type:"POST", 
+		data:JSON.stringify(dataTransfer), 
+		contentType: "application/json; charset=utf-8;",
+	    dataType: "json",
+		success:function(data) {
+			paging(data);
+			
+			var buttonHtml = "";
+			if (firstPageNo-5>1) {
+				buttonHtml += "<button type=\"button\" class=\"btn btn-primary\" id=\"prevPage\">이전</button>";
+			}
+			for (var pageNo=firstPageNo-5; pageNo<firstPageNo; pageNo++) {
+				buttonHtml += "<button type=\"button\" class=\"btn btn-primary pageNum\">" + pageNo + "</button>";
+			}
+			buttonHtml += "<button type=\"button\" class=\"btn btn-primary\" id=\"nextPage\">다음</button>";
+			$("#pageButtonGroup").html(buttonHtml);
 		},
 		error:function() {
 			alert("ERROR!!");
