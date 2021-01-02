@@ -103,7 +103,7 @@
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 	  <div class="btn-group me-2" role="group" aria-label="First group" id="pageButtonGroup">
 	  	<c:if test="${ startPageNo-5 > 1 }">
-	  		<button type="button" class="btn btn-primary">이전</button>
+	  		<button type="button" class="btn btn-primary" id="prevPage">이전</button>
 	  	</c:if>
 	  	<c:set var="start" value="1"></c:set>
 	  	<c:set var="total" value="${ totalPageNo }"></c:set>
