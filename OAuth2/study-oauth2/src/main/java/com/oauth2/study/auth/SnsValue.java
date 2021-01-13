@@ -12,7 +12,7 @@ public class SnsValue implements SnsUrls{
 	private String clientSecret;
 	private String redirectUrl;
 	private DefaultApi20 api20Instance;
-	
+	private String profileUrl;
 	
 	public SnsValue(String service, String clientId, String clientSecret, String redirectUrl) { 
 		 this.service = service; 
@@ -21,7 +21,7 @@ public class SnsValue implements SnsUrls{
 		 this.redirectUrl = redirectUrl; 
 		 if (service.equals("naver")) {
 			 this.api20Instance = NaverAPI20.instance();
+			 this.profileUrl = NAVER_PROFILE;
 		 }
 	}
-	 
 }
