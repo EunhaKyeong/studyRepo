@@ -24,21 +24,12 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- <beans:bean id="naverClientID" class="java.lang.String">
-		<beans:constructor-arg value="${naver.clientId}"></beans:constructor-arg>
-	</beans:bean>
-	<beans:bean id="naverClientSecret" class="java.lang.String">
-		<beans:constructor-arg value="${naver.clientSecret}"></beans:constructor-arg>
-	</beans:bean>
-	<beans:bean id="naverRedirectUrl" class="java.lang.String">
-		<beans:constructor-arg value="${naver.redirectUrl}"></beans:constructor-arg>
-	</beans:bean>  -->
-	
+	<!-- 네이버 소셜로그인  -->
 	<beans:bean id="naverSns" class="com.oauth2.study.auth.SnsValue">
 		<beans:constructor-arg name="service" value="naver"></beans:constructor-arg>
-		<beans:constructor-arg name="clientId" value="8oe4IIT5muVnx3zpgf5Y"></beans:constructor-arg>
-		<beans:constructor-arg name="clientSecret" value="2cxhZW_Uq8"></beans:constructor-arg>
-		<beans:constructor-arg name="redirectUrl" value="http://localhost:8080/auth/naver/callback"></beans:constructor-arg>
+		<beans:constructor-arg name="clientId" value="${naver.clientId}"></beans:constructor-arg>
+		<beans:constructor-arg name="clientSecret" value="${naver.clientSecret}"></beans:constructor-arg>
+		<beans:constructor-arg name="redirectUrl" value="${naver.redirectUrl}"></beans:constructor-arg>
 	</beans:bean>
 	
 	<context:component-scan base-package="com.oauth2.study" />
