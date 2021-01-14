@@ -129,6 +129,45 @@
 		    <version>8.1.0</version>
 		</dependency>
 		
+		<!-- mybatis lib-->
+		<!-- spring-jdbc/spring-tx : 스프링에서 데이터베이스 처리와 트랜잭션 처리 -->
+		<dependency>
+          	<groupId>org.springframework</groupId>
+          	<artifactId>spring-jdbc</artifactId>
+          	<version>${org.springframework-version}</version>
+      	</dependency>
+      	<dependency>
+          	<groupId>org.springframework</groupId>
+          	<artifactId>spring-tx</artifactId>
+          	<version>${org.springframework-version}</version>
+      	</dependency>
+      	
+      	<!-- mybatis/mybatis-spring : mybatis와 스프링 연동용 라이브러리 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		
+		<!-- Mysql Connector -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.13</version>
+		</dependency>
+		
+		<!-- spring test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
 		<!-- lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -137,46 +176,13 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<!--db-->
-		<!-- Mysql Connector -->
+		<!-- json-simple -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.13</version>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
 		</dependency>
 		
-		<!-- db 연동과 Mybatis -->
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.2.8</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.mybatis</groupId>
-		    <artifactId>mybatis-spring</artifactId>
-		    <version>2.0.3</version>
-		</dependency>
-		
-		<!-- Spring-JDBC -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-jdbc</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
-		
-		<!-- dataSource 위한 common-dbcp -->
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
-		
-		<!-- Spring Test :스프링에 Mybatis가 정상적으로 연동되었는지 확인 용도 -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
 	</dependencies>
     <build>
         <plugins>
