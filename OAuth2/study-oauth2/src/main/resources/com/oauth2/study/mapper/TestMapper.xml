@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oauth2.study.mapper.TestMapper">
+	<!-- 전체 유저 조회 -->
+	<select id="selectAlluser" resultType="com.oauth2.study.dto.UserVO">
+		select * from user;
+	</select>
+	
+	<!-- social이 naver일 때 userId가 존재하는지 확인하기 위한 select문-->
+	<select id="checkUserIdNaver" resultType="int" parameterType="String">
+		SELECT EXISTS (
+			SELECT *
+		    FROM user
+		    WHERE social="naver" AND userId=#{userId}
+		) as userIdCheck;
+	</select>
+</mapper>
