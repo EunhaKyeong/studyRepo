@@ -7,4 +7,5 @@ import com.oauth2.study.dto.UserVO;
 public interface TestMapper {
 	public List<UserVO> selectAlluser();
 	public int checkUserIdNaver(String userId);
+	public void insertUser(UserVO newUser);
 }
