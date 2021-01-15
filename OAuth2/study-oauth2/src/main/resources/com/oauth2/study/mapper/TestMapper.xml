@@ -14,4 +14,10 @@
 		    WHERE social="naver" AND userId=#{userId}
 		) as userIdCheck;
 	</select>
+	
+	<!-- user 등록하는 insert문 -->
+	<insert id="insertUser" parameterType="com.oauth2.study.dto.UserVO">
+		INSERT INTO user(social, userId, userName, userEmail, userPhone, userAddress) 
+			VALUES (#{social}, #{userId}, #{userName}, #{userEmail}, #{userPhone}, #{userAddress}); 
+	</insert>
 </mapper>
