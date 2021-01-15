@@ -1,8 +1,5 @@
 package com.oauth2.study.auth;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -50,7 +47,7 @@ public class SNSLogin {
 		Response response = oauthService.execute(request);
 		System.out.println("==========네이버 로그인성공 프로필 responseBody===========");
 		System.out.println(response.getBody());
-		System.out.println("==========네이버 로그인성공 프로필 responseBody===========");
+		System.out.println("=====================================================");
 		
 		return profileParsing(response.getBody());
 	}
