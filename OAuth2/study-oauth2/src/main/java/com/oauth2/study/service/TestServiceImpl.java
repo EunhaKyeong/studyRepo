@@ -27,4 +27,10 @@ public class TestServiceImpl implements TestService {
 		
 		return checkuserId;
 	}
+	
+	@Override
+	public void insertUser(UserVO newUser) {
+		testMapper.insertUser(newUser);
+		System.out.println("새 유저 등록 완료!");
+	}
 }
