@@ -1,4 +1,4 @@
-//각 계정마다 로그인 페이지로 이동하는 url, access token을 가지러 가는 url, profile 정보를 가지러 가는 
+//각 계정마다 로그인 페이지로 이동하는 url, access token을 가지러 가는 url, profile 정보를 가지러 가는  
 //url들의 정보를 가지고 있는 인터페이스.
 //해당 인터페이스에 있는 url 정보는 변경될 일이 없는 것들이라서 인터페이스로 구현한 것임.
 package com.oauth2.study.auth;
