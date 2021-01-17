@@ -25,13 +25,17 @@ public class LoginController {
 	@Inject
 	private SnsValue naverSns;	//servlet-context에 id값을 naverSns로 한 빈 주입.
 	
-	@Inject TestServiceImpl testService;
+	@Inject 
+	private TestServiceImpl testService;
+	
+	@Inject
+	private SNSLogin naverLogin;
 	
 	//로그인 페이지
 	@RequestMapping("/login")
-	public String login(Model model) {
-		SNSLogin snsLogin = new SNSLogin(naverSns);
-		model.addAttribute("NAVER_AUTH", snsLogin.getNaverAuthURL());
+	public String login(Model model, HttpSession session) {
+		naverLogin = new SNSLogin(naverSns, session);
+		model.addAttribute("NAVER_AUTH", naverLogin.getAuthorizationUrl());
 		
 		return "login";
 	}
@@ -39,16 +43,18 @@ public class LoginController {
 	//login callback
 	@RequestMapping(value="/auth/{service}/callback", method=RequestMethod.GET)
 	public String loginCallback(Model model, @PathVariable String service, @RequestParam String code, HttpSession session, RedirectAttributes redirectAttributes) throws Exception {
+		System.out.println("\n===========" + service + " 로그인 성공!===========");
+		System.out.println("Session state: " + session.getAttribute("state"));
+		System.out.println("==================================================");
+		
 		//1. 로그인이 성공하면 access Token을 받기 위한 code를 받음.
 		//2. access Token을 이용해 사용자 프로필 정보를 얻음.
 		//3. 사용자 프로필과 우리의 User 테이블을 비교해 가입한 사용자인지 확인.
-		SNSLogin sns = null;
 		UserVO user = new UserVO();
 		int isUser = 0;
 		if (service.equals("naver")) {
-			sns = new SNSLogin(naverSns);
-			user = sns.getProfile(code);	//프로필 정보 얻어오기
-			isUser = testService.checkIdNaver(user.getUserId());	//가입한 사용자인지 미가입자인지 확인-1이면 가입사용자, 0이면 미가입자
+			user = naverLogin.getProfile(code, session);	//프로필 정보 얻어오기
+			isUser = testService.checkIdNaver(user.getUserId());	//가입한 사용자인지 미가입자인지 확인 : 1이면 가입사용자, 0이면 미가입자
 		}
 		
 		if (isUser==1) {	//4-1. 가입한 사용자면 강제로그인 시키고 홈으로 이동.
