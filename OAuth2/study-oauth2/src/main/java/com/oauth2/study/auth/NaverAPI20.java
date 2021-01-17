@@ -4,7 +4,7 @@ package com.oauth2.study.auth;
 import com.github.scribejava.core.builder.api.DefaultApi20;
 /*
  * DefaultApi20
- * 1. 소셜로그인에서 이용하는 라이브러리
+ * 1. scribejava-core 라이브러리를 이용하기 위해 각 소셜로그인마다 구현체를 만들어주는 작업.
  * 2. 소셜마다 필요한 authorize url, token url 등의 정보만 있으면 알아서 연결해줌.
  * 3. 이 클래스는 abstract 형식이기 때문에 Override로 구현해줘야 하는 메서드가 존재(getAccessTokenEndpoint, getAuthorizationBaseUrl)
  * 4. 싱글톤 클래스임. -> 싱글톤 클래스란 프로젝트 내에서 객체가 딱 한개 존재해야 하는 클래스를 말함.
@@ -37,5 +37,4 @@ public class NaverAPI20 extends DefaultApi20 implements SnsUrls {
 		// TODO Auto-generated method stub
 		return NAVER_AUTH;
 	}
-
 }
