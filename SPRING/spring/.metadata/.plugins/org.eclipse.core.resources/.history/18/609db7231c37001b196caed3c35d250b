@@ -1,0 +1,5 @@
+$(function(){
+	$("#gugu_submit").click(function() {
+		console.log($("gugu_form"));
+	});
+});

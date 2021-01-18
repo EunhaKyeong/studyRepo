@@ -1,0 +1,26 @@
+package com.tutorial.spring.controller;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.tutorial.spring.auth.SnsValue;
+
+@Controller
+public class OauthController {
+	@Inject
+	SnsValue snsValue;
+	
+	@RequestMapping(value="/")
+	public String main() {
+		System.out.println("==================================");
+		System.out.printf("value : {}\n",  snsValue.getService());
+		System.out.printf("clientId : {}\n", snsValue.getClientId());
+		System.out.printf("clientSecret : {}\n", snsValue.getClientSecret());
+		System.out.printf("redirectUrl : {}\n", snsValue.getRedirectUrl());
+		System.out.println("==================================");
+		
+		return "main";
+	}
+}

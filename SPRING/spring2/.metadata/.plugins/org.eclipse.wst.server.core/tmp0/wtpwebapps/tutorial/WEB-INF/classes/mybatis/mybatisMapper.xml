@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="mybatis.mybatisConfig">
+	
+	
+</mapper> -->
+
+<mapper namespace="testDB">
+	<!-- SELECT
+		1. SELECT문을 사용할 때는 select 태그 사용.
+		2. id : 호출할 쿼리문 명칭
+		3. parameterType : 쿼리문에서 동적으로 변수를 받을 때 그 변수의 자료형 타입
+		4. resultType : 조회할 테이블(config에서 정한 alias 명칭)
+		-->
+	<select id="selectMember" parameterType="string" resultType="MembersVO">
+		select * from members where email=#{email}	<!-- {#email}:동적으로 받는 변수(parameterType에 적힌 자료형으로 입력) -->
+	</select>
+		
+	<select id="selectAllMembers" parameterType="string" resultType="MembersVO">
+		select * from members;
+	</select>
+	
+	<insert id="insertMember" parameterType="string">
+		insert into members(email) values(#{email})
+	</insert>
+	
+	<select id="selectAllProducts" resultType="ProductVO">
+		select * from product;
+	</select>
+	
+	<select id="selectLimitProducts" parameterType="int" resultType="ProductVO">
+		select * from product limit #{startIdx}, 6;
+	</select>
+	
+	<select id="selectRowCnt" parameterType="int" resultType="int">
+		select count(*) from product where category_id=#{ category_id };
+	</select>
+	
+	<select id="selectAllCategories" resultType="CategoryVO">
+		select * from category;
+	</select>
+	
+	<select id="selectProductsCategory" parameterType="HashMap" resultType="ProductVO">
+		select p.product_name, p.manufacturer, p.seller, p.product_price, p.product_img
+		from product as p Left join category as c
+		on p.category_id=c.category_id
+		where p.category_id=#{ categoryId }
+		limit #{page}, 6;
+	</select>
+	
+	<insert id="insertImage" parameterType="ImageVO">
+		insert into image(image_id, image_name, image_url) values (#{imageId}, #{imageName}, #{imageUrl});
+	</insert>
+	
+	<select id="selectMaxImageId" resultType="int">
+		select MAX(image_id)
+		from image;
+	</select>
+</mapper>

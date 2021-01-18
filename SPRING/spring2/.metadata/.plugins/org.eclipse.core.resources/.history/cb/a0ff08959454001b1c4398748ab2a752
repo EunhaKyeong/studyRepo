@@ -1,0 +1,5 @@
+package com.tutorial.spring.auth;
+
+public class SNS {
+
+}

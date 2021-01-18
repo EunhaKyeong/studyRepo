@@ -1,0 +1,10 @@
+package com.tutorial.spring.auth;
+
+@Data
+public class SnsValue {
+	private String service;
+	private String clientId;
+	private String clientSecret;
+	private String redirectUrl;
+	
+}
