@@ -4,9 +4,9 @@ target/
 */.metadata/
 */Servers/
 */tutorial/src/main/resources/config/
-spring2/tutorial/src/main/resources/upload_images/
-JSP_Ajax/.metadata/
-JSP_Ajax/Servers/
+SPRING/spring2/tutorial/src/main/resources/upload_images/
+SPRING/JSP_Ajax/.metadata/
+SPRING/JSP_Ajax/Servers/
 #Compiled class file
 *.class
 
@@ -17,11 +17,11 @@ JSP_Ajax/Servers/
 *.ctxt
 
 #OAuth2
-OAuth2/.metadata/
-OAuth2/Servers/
-OAuth2/study-oauth2/.settings/
-OAuth2/study-oauth2/target/
-OAuth2/study-oauth2/.springBeans
-OAuth2/study-oauth2/.project
-OAuth2/study-oauth2/.classpath
-OAuth2/study-oauth2/src/main/webapp/config/
+SPRING/OAuth2/.metadata/
+SPRING/OAuth2/Servers/
+SPRING/OAuth2/study-oauth2/.settings/
+SPRING/OAuth2/study-oauth2/target/
+SPRING/OAuth2/study-oauth2/.springBeans
+SPRING/OAuth2/study-oauth2/.project
+SPRING/OAuth2/study-oauth2/.classpath
+SPRING/OAuth2/study-oauth2/src/main/webapp/config/
