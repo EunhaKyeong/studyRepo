@@ -58,14 +58,16 @@ public class LoginController {
 		}
 		
 		if (isUser==1) {	//4-1. 가입한 사용자면 강제로그인 시키고 홈으로 이동.
-			session.setAttribute("userId", user.getUserId());
+			session.setAttribute("login", 1); 	//로그인에 성공하면 session에 login에 1을 입력.
 			redirectAttributes.addFlashAttribute("user", user);
 			
+			System.out.println("User 테이블에 데이터 존재! 로그인 성공!");
 			return "redirect:/";
 		}
 		else {	//4-2. 미가입이면 회원가입 페이지로 이동.
 			redirectAttributes.addFlashAttribute("user", user);	//미가입자 기본정보를 가지고
 			
+			System.out.println("User 테이블에 데이터 존재하지 않음! 회원가입 페이지로!");
 			return "redirect:/signUp";	//signUp 페이지(회원가입 페이지)로 리다이렉트
 		}
 	}
@@ -97,6 +99,7 @@ public class LoginController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		
+		System.out.println("로그아웃!");
 		return "redirect:/";
 	}
 }
