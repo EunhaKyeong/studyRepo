@@ -54,12 +54,13 @@ public class LoginController {
 		int isUser = 0;
 		if (service.equals("naver")) {
 			user = naverLogin.getProfile(code, session);	//프로필 정보 얻어오기
-			isUser = testService.checkIdNaver(user.getUserId());	//가입한 사용자인지 미가입자인지 확인 : 1이면 가입사용자, 0이면 미가입자
+			isUser = testService.checkIdNaver(user.getUserId());	//가입한 사용자인지 미가입자인지 확인 : 1이면 가입사용자, null이면 미가입자
 		}
 		
 		if (isUser==1) {	//4-1. 가입한 사용자면 강제로그인 시키고 홈으로 이동.
 			session.setAttribute("login", 1); 	//로그인에 성공하면 session에 login에 1을 입력.
-			redirectAttributes.addFlashAttribute("user", user);
+			session.setAttribute("userCode", user.getUserCode());
+			session.setAttribute("userName", user.getUserName());
 			
 			System.out.println("User 테이블에 데이터 존재! 로그인 성공!");
 			return "redirect:/";
